@@ -1,5 +1,5 @@
 {% set name = "ndvi2gif" %}
-{% set version = "1.1.0" %}
+{% set version = "1.2.2" %}
 {% set python_min = "3.8" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a7ba036b26a5cfca093e5d1acd41005afa8b344fe8e1932510fdb51acd5b0c09
+  sha256: 2f73a6a1780c06d5f70f63e577434a6ed0065f4ac4d70c3820059ded73b1cb8e
 
 build:
   noarch: python
@@ -24,7 +24,7 @@ requirements:
     - python >={{ python_min }}
     - geemap >=0.29.5
     - earthengine-api >=0.1.347
-    - numpy <2.0
+    - numpy >=1.24
     - pandas
     - scipy
     - matplotlib
@@ -46,6 +46,7 @@ test:
     - ndvi2gif.s1_ard
     - ndvi2gif.timeseries
     - ndvi2gif.clasification
+    - ndvi2gif.hydroperiod
   requires:
     - python >={{ python_min }}
 
@@ -54,19 +55,18 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: Multi-seasonal remote sensing and climate analysis suite with machine learning classification using Google Earth Engine
+  summary: Multi-seasonal remote sensing analysis suite with Google Earth Engine
   description: |
-    NDVI2GIF is a comprehensive Python library for multi-seasonal remote sensing and climate analysis using Google Earth Engine.
-    Version 1.1.0 adds the Floating Algae Index (FAI) for cyanobacterial bloom detection in water bodies.
+    Ndvi2Gif is a Python library for multi-temporal remote sensing analysis with Google Earth Engine.
+    It provides seasonal compositing, 40+ vegetation and environmental indices, SAR preprocessing,
+    time series analytics, land cover classification, and hydroperiod analysis — all server-side.
 
     Key features include:
-    - 89 variables across 7 satellite and climate platforms (Sentinel-1/2/3, Landsat, MODIS, ERA5-Land, CHIRPS)
-    - ERA5-Land climate reanalysis (47 variables, 1950-present): temperature, precipitation, soil moisture, radiation, wind
-    - CHIRPS high-resolution precipitation (1981-present, ~5.5km)
+    - 7 satellite and climate platforms (Sentinel-1/2/3, Landsat, MODIS, ERA5-Land, CHIRPS)
+    - HydroperiodAnalyzer: GEE-native flood duration analysis using midpoint temporal weighting
     - 40+ vegetation and environmental indices with SAR preprocessing
     - 8 machine learning classification algorithms (supervised and unsupervised)
     - Time series analysis with trend detection and phenology metrics
-    - Complete Jupyter Book documentation for research workflows
   doc_url: https://digdgeo.github.io/Ndvi2Gif/
   dev_url: https://github.com/Digdgeo/Ndvi2Gif
 
